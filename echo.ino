@@ -19,8 +19,9 @@ void newRound(){
   sequence[round-1] = newColour;
   for (int i = 0; i < round; i++){
     int currentColour = sequence[i];
-    int freq = (currentColour+1) * 300;
+    int frequency = (currentColour+1) * 300;
     tone(buzzer1, frequency, 1000);
+    delay(1000);
     if (i != (round-1)){
       delay(500);
     }
@@ -45,9 +46,6 @@ void setup() {
 
 void loop() {
   if (gameStarted == false) {
-    pressedButton1 = digitalRead(button1) == HIGH && button1Down == false;
-    pressedButton2 = digitalRead(button2) == HIGH && button2Down == false;
-    pressedButton3 = digitalRead(button3) == HIGH && button3Down == false;
     if (digitalRead(button1) == HIGH || digitalRead(button2) == HIGH || digitalRead(button3) == HIGH){
       round = 1;
       gameStarted = true;
@@ -70,18 +68,55 @@ void loop() {
 
     if (buttonPressed == true){
       int frequency = (pressedButton+1)*300;
-      if (sequence[inputIndex] == 0){
+      if (sequence[inputIndex] == pressedButton){
         inputIndex += 1;
         tone(buzzer1, frequency, 500);
+        delay(500);
         if (inputIndex == round){
-          // if round is 100, then do the victory tune or something
+          if (round == 100){
+            // victory tune
+            tone(buzzer1, 500, 500);
+            delay(500);
+            tone(buzzer1, 600, 500);
+            delay(500);
+            tone(buzzer1, 700, 500);
+            delay(500);
+            tone(buzzer1, 800, 500);
+            delay(500);
+            tone(buzzer1, 900, 500);
+            delay(500);
+            tone(buzzer1, 900, 500);
+            delay(500);
+            tone(buzzer1, 900, 500);
+            delay(500);
+            gameStarted = false;
+            return;
+          }
           round += 1;
           inputIndex = 0;
           newRound();
         }
       } else {
-        // replay the right sequence, then a sad tune
-
+        for (int i = 0; i < round; i++){
+          int currentColour = sequence[i];
+          int frequency = (currentColour+1) * 300;
+          tone(buzzer1, frequency, 500);
+          delay(500);
+          if (i != (round-1)){
+            delay(250);
+          }
+        }
+        // lose tune
+        tone(buzzer1, 900, 500);
+        delay(500);
+        tone(buzzer1, 800, 500);
+        delay(500);
+        tone(buzzer1, 700, 500);
+        delay(500);
+        tone(buzzer1, 600, 500);
+        delay(500);
+        tone(buzzer1, 500, 1000);
+        delay(1000);
         gameStarted = false;
       }
     }

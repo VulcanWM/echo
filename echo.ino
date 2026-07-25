@@ -46,7 +46,7 @@ void setup() {
 
 void loop() {
   if (gameStarted == false) {
-    if (digitalRead(button1) == HIGH || digitalRead(button2) == HIGH || digitalRead(button3) == HIGH){
+    if (digitalRead(button1) == LOW || digitalRead(button2) == LOW || digitalRead(button3) == LOW){
       round = 1;
       gameStarted = true;
       newRound();
@@ -55,13 +55,13 @@ void loop() {
   } else {
     bool buttonPressed = false;
     int pressedButton = 0;
-    if (digitalRead(button1) == HIGH){
+    if (digitalRead(button1) == LOW){
       buttonPressed = true;
       pressedButton = 0;
-    } else if (digitalRead(button2) == HIGH){
+    } else if (digitalRead(button2) == LOW){
       buttonPressed = true;
       pressedButton = 1;
-    } else if (digitalRead(button3) == HIGH){
+    } else if (digitalRead(button3) == LOW){
       buttonPressed = true;
       pressedButton = 2;
     }

@@ -1,0 +1,89 @@
+int button1 = D0;
+int button2 = D1;
+int button3 = D2;
+
+int led1 = D3;
+int led2 = D4;
+int led3 = D5;
+
+int buzzer1 = D6;
+
+bool gameStarted = false;
+int round = 0;
+
+int sequence[100]; // win at 100
+int inputIndex = 0;
+
+void newRound(){
+  int newColour = random(3);
+  sequence[round-1] = newColour;
+  for (int i = 0; i < round; i++){
+    int currentColour = sequence[i];
+    int freq = (currentColour+1) * 300;
+    tone(buzzer1, frequency, 1000);
+    if (i != (round-1)){
+      delay(500);
+    }
+  }
+}
+
+void setup() {
+  pinMode(button1, INPUT_PULLUP);
+  pinMode(button2, INPUT_PULLUP);
+  pinMode(button3, INPUT_PULLUP);
+
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+
+  pinMode(buzzer1, OUTPUT);
+
+  Serial.begin(9600);
+
+  randomSeed(analogRead(0));
+}
+
+void loop() {
+  if (gameStarted == false) {
+    pressedButton1 = digitalRead(button1) == HIGH && button1Down == false;
+    pressedButton2 = digitalRead(button2) == HIGH && button2Down == false;
+    pressedButton3 = digitalRead(button3) == HIGH && button3Down == false;
+    if (digitalRead(button1) == HIGH || digitalRead(button2) == HIGH || digitalRead(button3) == HIGH){
+      round = 1;
+      gameStarted = true;
+      newRound();
+      inputIndex = 0;
+    }
+  } else {
+    bool buttonPressed = false;
+    int pressedButton = 0;
+    if (digitalRead(button1) == HIGH){
+      buttonPressed = true;
+      pressedButton = 0;
+    } else if (digitalRead(button2) == HIGH){
+      buttonPressed = true;
+      pressedButton = 1;
+    } else if (digitalRead(button3) == HIGH){
+      buttonPressed = true;
+      pressedButton = 2;
+    }
+
+    if (buttonPressed == true){
+      int frequency = (pressedButton+1)*300;
+      if (sequence[inputIndex] == 0){
+        inputIndex += 1;
+        tone(buzzer1, frequency, 500);
+        if (inputIndex == round){
+          // if round is 100, then do the victory tune or something
+          round += 1;
+          inputIndex = 0;
+          newRound();
+        }
+      } else {
+        // replay the right sequence, then a sad tune
+
+        gameStarted = false;
+      }
+    }
+  }
+}

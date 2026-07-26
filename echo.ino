@@ -5,6 +5,7 @@ int button3 = D2;
 int led1 = D3;
 int led2 = D4;
 int led3 = D5;
+int leds[] = {led1, led2, led3};
 
 int buzzer1 = D6;
 
@@ -15,17 +16,63 @@ int sequence[100]; // win at 100
 int inputIndex = 0;
 
 void newRound(){
+  delay(500);
+  
   int newColour = random(3);
   sequence[round-1] = newColour;
   for (int i = 0; i < round; i++){
     int currentColour = sequence[i];
     int frequency = (currentColour+1) * 300;
     tone(buzzer1, frequency, 1000);
+    digitalWrite(leds[currentColour], HIGH);
     delay(1000);
+    digitalWrite(leds[currentColour], LOW);
     if (i != (round-1)){
       delay(500);
     }
   }
+}
+
+void loseTune(){
+  tone(buzzer1, 900, 500);
+  delay(500);
+  tone(buzzer1, 800, 500);
+  delay(500);
+  tone(buzzer1, 700, 500);
+  delay(500);
+  tone(buzzer1, 600, 500);
+  delay(500);
+  tone(buzzer1, 500, 1000);
+  delay(1000);
+}
+
+void victoryTune(){
+  tone(buzzer1, 500, 500);
+  delay(500);
+  tone(buzzer1, 600, 500);
+  delay(500);
+  tone(buzzer1, 700, 500);
+  delay(500);
+  tone(buzzer1, 800, 500);
+  delay(500);
+  tone(buzzer1, 900, 500);
+  delay(500);
+  tone(buzzer1, 900, 500);
+  delay(500);
+  tone(buzzer1, 900, 500);
+  delay(500);
+}
+
+void waitForRelease() {
+  while (
+    digitalRead(button1) == LOW ||
+    digitalRead(button2) == LOW ||
+    digitalRead(button3) == LOW
+  ) {
+    delay(5);
+  }
+
+  delay(20);
 }
 
 void setup() {
@@ -51,6 +98,7 @@ void loop() {
       gameStarted = true;
       newRound();
       inputIndex = 0;
+      waitForRelease();
     }
   } else {
     bool buttonPressed = false;
@@ -71,24 +119,13 @@ void loop() {
       if (sequence[inputIndex] == pressedButton){
         inputIndex += 1;
         tone(buzzer1, frequency, 500);
+        digitalWrite(leds[pressedButton], HIGH);
         delay(500);
+        digitalWrite(leds[pressedButton], LOW);
+        waitForRelease();
         if (inputIndex == round){
           if (round == 100){
-            // victory tune
-            tone(buzzer1, 500, 500);
-            delay(500);
-            tone(buzzer1, 600, 500);
-            delay(500);
-            tone(buzzer1, 700, 500);
-            delay(500);
-            tone(buzzer1, 800, 500);
-            delay(500);
-            tone(buzzer1, 900, 500);
-            delay(500);
-            tone(buzzer1, 900, 500);
-            delay(500);
-            tone(buzzer1, 900, 500);
-            delay(500);
+            victoryTune();
             gameStarted = false;
             return;
           }
@@ -101,24 +138,18 @@ void loop() {
           int currentColour = sequence[i];
           int frequency = (currentColour+1) * 300;
           tone(buzzer1, frequency, 500);
+          digitalWrite(leds[currentColour], HIGH);
           delay(500);
+          digitalWrite(leds[currentColour], LOW);
           if (i != (round-1)){
             delay(250);
           }
         }
-        // lose tune
-        tone(buzzer1, 900, 500);
-        delay(500);
-        tone(buzzer1, 800, 500);
-        delay(500);
-        tone(buzzer1, 700, 500);
-        delay(500);
-        tone(buzzer1, 600, 500);
-        delay(500);
-        tone(buzzer1, 500, 1000);
-        delay(1000);
+        loseTune();
         gameStarted = false;
       }
     }
+
+    waitForRelease();
   }
 }

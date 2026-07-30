@@ -13,6 +13,20 @@ How the game works is:
 
 I made it because I spend a lot of time on devices, so whenever I've been using one continuously for around an hour, I can take a break by playing this game. Since it's a memory game, it also helps me improve my focus.
 
+## Images
+This is what the schematic looks like:
+![schematic](https://github.com/VulcanWM/echo/blob/main/images/echo-schematic.png)
+
+This is what the PCB looks like:
+![pcb](https://github.com/VulcanWM/echo/blob/main/images/echo-pcb.png)
+
+This is what the PCB looks like in the 3D renderer:
+![pcb 3d](https://github.com/VulcanWM/echo/blob/main/images/echo-pcb3d.png)
+
+## Firmware
+
+The firmware contains the code for exactly what I explained in the how the game works' section and it was written in the Arduino IDE in C++. It is in the [echo.ino](https://github.com/VulcanWM/echo/blob/main/echo.ino) file.
+
 ## BOM
 (Also in the [BOM.csv](https://github.com/VulcanWM/echo/blob/main/BOM.csv) file)
 

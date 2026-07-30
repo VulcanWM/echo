@@ -14,13 +14,19 @@ How the game works is:
 I made it because I spend a lot of time on devices, so whenever I've been using one continuously for around an hour, I can take a break by playing this game. Since it's a memory game, it also helps me improve my focus.
 
 ## Images
+
+The KiCad source files (`.kicad_pro`, `.kicad_sch`, `.kicad_pcb`) and `gerbers.zip` used to manufacture the PCB are located in the [`pcb`](pcb) folder.
+
 This is what the schematic looks like:
+
 ![schematic](https://github.com/VulcanWM/echo/blob/main/images/echo-schematic.png)
 
 This is what the PCB looks like:
+
 ![pcb](https://github.com/VulcanWM/echo/blob/main/images/echo-pcb.png)
 
 This is what the PCB looks like in the 3D renderer:
+
 ![pcb 3d](https://github.com/VulcanWM/echo/blob/main/images/echo-pcb3d.png)
 
 ## Firmware

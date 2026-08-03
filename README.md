@@ -15,7 +15,7 @@ I made it because I spend a lot of time on devices, so whenever I've been using 
 
 ## Images
 
-The KiCad source files (`.kicad_pro`, `.kicad_sch`, `.kicad_pcb`) and `gerbers.zip` used to manufacture the PCB are located in the [`pcb-files`](pcb) folder.
+The KiCad source files (`.kicad_pro`, `.kicad_sch`, `.kicad_pcb`) and `gerbers.zip` used to manufacture the PCB are located in the [`pcb-files`](pcb-files) folder.
 
 This is what the schematic looks like:
 

@@ -19,15 +19,15 @@ The KiCad source files (`.kicad_pro`, `.kicad_sch`, `.kicad_pcb`) and `gerbers.z
 
 This is what the schematic looks like:
 
-![schematic](https://github.com/VulcanWM/echo/blob/main/images/echo-schematic.png)
+![schematic](https://github.com/VulcanWM/echo/blob/main/images/schematic-echo.png)
 
 This is what the PCB looks like:
 
-![pcb](https://github.com/VulcanWM/echo/blob/main/images/echo-pcb.png)
+![pcb](https://github.com/VulcanWM/echo/blob/main/images/pcb-echo.png)
 
 This is what the PCB looks like in the 3D renderer:
 
-![pcb 3d](https://github.com/VulcanWM/echo/blob/main/images/echo-pcb3d.png)
+![pcb 3d](https://github.com/VulcanWM/echo/blob/main/images/pcb3d-echo.png)
 
 ## Firmware
 

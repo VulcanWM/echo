@@ -3,6 +3,7 @@
 This is my first hardware project, in which I made a Simon Says game by designing a PCB and writing the firmware for it.
 
 The components involved are a XIAO RP2040 as the microcontroller, 3 switches which represent the possible options the player has to press, 3 different coloured LEDs that light up when introducing the sequence, resistors to stop the LEDs from receiving too much current, and a buzzer so the game is not just vision-based but also audio-based.
+
 There is also a CAD-designed case, consisting only of a bottom section. I felt that a top cover was unnecessary, as the buttons and LEDs need to remain clearly visible and accessible. The bottom case mainly protects the PCB while making the device easier and more comfortable to hold.
 
 How the game works is:

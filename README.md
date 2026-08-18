@@ -4,7 +4,7 @@ This is my first hardware project, in which I made a Simon Says game by designin
 
 The components involved are a XIAO RP2040 as the microcontroller, 3 switches which represent the possible options the player has to press, 3 different coloured LEDs that light up when introducing the sequence, resistors to stop the LEDs from receiving too much current, and a buzzer so the game is not just vision-based but also audio-based.
 
-There is also a CAD-designed case, consisting only of a bottom section. I felt that a top cover was unnecessary, as the buttons and LEDs need to remain clearly visible and accessible. The bottom case mainly protects the PCB while making the device easier and more comfortable to hold.
+There is also a CAD-designed case, consisting only of a bottom section. I felt that a top cover was unnecessary, as the buttons and LEDs need to remain clearly visible and accessible. The bottom case mainly protects the PCB while making the device easier and more comfortable to hold. There are 4 mounting holes so that the PCB can be securely attached to standoffs in the case using screws.
 
 How the game works is:
 - You press any button to start.
@@ -40,6 +40,16 @@ This is what the case looks like (with the PCB inside it):
 ## Firmware
 
 The firmware contains the code for exactly what I explained in the how the game works' section and it was written in the Arduino IDE in C++. It is in the [echo.ino](https://github.com/VulcanWM/echo/blob/main/echo.ino) file.
+
+## Assembly
+1. Order the PCB using the Gerber files in the pcb-files folder and 3D print the bottom case using the files in the case-files folder. 
+2. Solder the XIAO RP2040, 3 LEDs, 3 resistors, buzzer, and 3 switches onto the PCB, making sure the LEDs are inserted with the correct polarity.
+3. Place the keycaps onto the three switches.
+4. Position the PCB on top of the four standoffs in the case, lining up the 2.2mm PCB mounting holes with the pilot holes in the standoffs.
+5. Use M2 self-tapping screws to secure the PCB to the case. The screws thread into the 1.7mm pilot holes in the standoffs.
+6. Check that the XIAO RP2040 USB-C port lines up with the cutout in the side of the case and that no components or solder joints are touching the bottom of the case.
+7. Connect the XIAO RP2040 over USB-C and upload the firmware from `echo.ino`.
+8. Test each switch, LED, and the buzzer before playing the game.
 
 ## BOM
 (Also in the [BOM.csv](https://github.com/VulcanWM/echo/blob/main/BOM.csv) file)
